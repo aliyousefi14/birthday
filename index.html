@@ -11,6 +11,12 @@
             color: #333;
             text-align: center;
             padding: 50px;
+            margin: 0;
+            overflow: hidden; /* جلوگیری از اسکرول صفحه */
+            height: 100vh; /* ارتفاع صفحه کامل */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         h1 {
             font-size: 50px;
@@ -24,34 +30,13 @@
             100% { transform: rotateY(0deg); }
         }
         #music {
-            display: none;
+            display: block; /* نمایش موسیقی */
         }
         .message {
             font-size: 30px;
             color: #fff;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
-        .btn {
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: #32cd32;
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background-color: #228b22;
-        }
-        .delay {
-            animation: delayAnimation 1s ease-in-out;
-        }
-        @keyframes delayAnimation {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        /* اضافه کردن استایل برای متن "توسط علی یوسفی" */
         .credits {
             font-size: 24px;
             color: #ff6347;
@@ -67,10 +52,7 @@
 <body>
     <h1 class="message">تولدت مبارک!</h1>
     <p class="message">امیدوارم سالی پر از خوشی و موفقیت داشته باشی!</p>
-    <a href="#" class="btn" onclick="startBirthday()">
-        کلیک کن تا تولدت را به سبک جدیدی تبریک بگم
-    </a>
-    <audio id="music" src="https://dl.nicmusic.net/upload/2025/01/16/Dj%2021%20-%20Shadmehr%20Vibe.mp3" autoplay></audio>
+    <audio id="music" src="https://dl.nicmusic.net/upload/2025/01/16/Dj%2021%20-%20Shadmehr%20Vibe.mp3" autoplay loop></audio>
 
     <!-- اضافه کردن متن برای تبریک -->
     <div class="credits">
@@ -79,23 +61,21 @@
     </div>
 
     <script>
-        function startBirthday() {
-            // نمایش پیام سه بعدی
-            let message = document.querySelector('.message');
-            message.classList.add('delay');
-            document.querySelector('h1').textContent = "تبریک تولد سه بعدی!";
-            
-            // پخش موسیقی
-            let music = document.getElementById('music');
-            music.play();
+        window.onload = function() {
+            // جلوگیری از تعاملات کاربر
+            document.body.style.pointerEvents = 'none'; // غیرفعال کردن کلیک
 
-            // هنگ کردن صفحه (تجربه جالب)
-            setTimeout(() => {
-                document.body.style.pointerEvents = 'none'; // غیرفعال کردن کلیک
-                setTimeout(() => {
-                    document.body.style.pointerEvents = 'auto'; // فعال کردن دوباره کلیک
-                }, 5000); // 5 ثانیه زمان هنگ
-            }, 1000); // بعد از 1 ثانیه که پیام نمایش داده شد
+            // کرش کردن صفحه (تنها برای تجربه غیرقابل استفاده بودن)
+            setTimeout(function() {
+                alert("صفحه دچار مشکل شد! برای ادامه باید منتظر بمانید.");
+                // شبیه‌سازی کرش صفحه
+                document.body.style.pointerEvents = 'none'; // دوباره غیرفعال کردن کلیک
+            }, 5000); // پس از 5 ثانیه کرش صفحه
+
+            // جلوگیری از بستن صفحه یا تغییر تب
+            window.onbeforeunload = function() {
+                return "آیا مطمئنید که می‌خواهید از این صفحه خارج شوید؟";
+            };
         }
     </script>
 </body>
