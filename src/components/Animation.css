@@ -1,0 +1,28 @@
+.animation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.balloon {
+  font-size: 5rem;
+  animation: float 3s infinite;
+}
+
+.cake {
+  font-size: 6rem;
+  animation: shake 1s infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
